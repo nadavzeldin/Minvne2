@@ -6,6 +6,8 @@ node::node(int key, char* firstName, char* lastName)
 	key_value = key;
 	fstName = firstName;
 	lstName = lastName;
+	this->left = nullptr;
+	this->right = nullptr;
 }
 
 node::~node()
