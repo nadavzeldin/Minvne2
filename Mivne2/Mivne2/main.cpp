@@ -27,11 +27,17 @@ int main()
     
     for (int i = 0; i < n; i++)
     {
-        cout << "Please enter id and first name and last name";
+        cout << i;
+        cout << "Please enter id and first name and last name ";
         cin >> k;
         cin >> firstName;
         //need to check whitepace between first and last name
         cin >> lastName;
+
+        //inserting value to array
+        arr[i].key_value = k;
+        arr[i].fstName = firstName;
+        arr[i].lstName = lastName;
     }
 
     //need to print all items which id is less then k
@@ -41,3 +47,4 @@ int main()
 
     return 0;
 }
+
