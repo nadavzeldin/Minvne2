@@ -1,15 +1,18 @@
 #include <iostream>
+#include <ctype.h>
+#include <string.h>
 #include "binaryTree.h"
 #include "List.h"
 using namespace std;
-
+#define MAX 100
 
 int main()
 {
     //configs
-    int n,k;
-    char firstName[100];
-    char lastName[100];
+    int n,k, v, j =0;
+    char firstName[MAX];
+    char lastName[MAX];
+    bool valid_name = false;
 
     //creating list
     List lst;
@@ -27,18 +30,26 @@ int main()
     
     for (int i = 0; i < n; i++)
     {
-        cout << i;
-        cout << "Please enter id and first name and last name ";
+        cout << "Please enter the id of person number " << i + 1 << endl;
         cin >> k;
-        cin >> firstName;
-        //need to check whitepace between first and last name
-        cin >> lastName;
-
+	while(!valid_name)
+	{
+	    cout << "Please enter the first and last name of the person" << endl;
+ 	    cin >> firstName;
+	    cin >> lastName;	   
+	    cout << "first after " << firstName << endl;
+	    cout << "last after " << lastName << endl;
+	    if(firstName && lastName) { valid_name = true; }
+	    else { valid_name = false; }
+	}
         //inserting value to array
         arr[i].key_value = k;
         arr[i].fstName = firstName;
         arr[i].lstName = lastName;
+	valid_name = false;
     }
+    cout << "Enter ID number to check" << endl;
+    cin >> v; // v is the comprasion value
 
     //need to print all items which id is less then k
         // NaivePrint
