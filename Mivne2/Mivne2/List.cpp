@@ -2,47 +2,53 @@
 using namespace std;
 
 #include "List.h"
-#include "listNode.h"
+
 List::List() 
 {
-	head = tail = new listNode(-99999, nullptr, nullptr);
+	tail = nullptr;
 }
 
 List::~List()
 {
-	MakeEmpty();
+	makeEmpty();
 }
 
-void List::MakeEmpty()
+void List::printDS()
 {
-	MakeEmpty(tail);
+	Node* tmp = head;
+	while(tmp)
+	{
+		tmp->printNode();
+		tmp = tmp->point[1];
+	}
 }
 
-void List::MakeEmpty(listNode* tail)
+void List::makeEmpty()
+{
+	makeEmpty(tail);
+}
+
+void List::makeEmpty(Node* tail)
 {
 	while (tail != nullptr)
 	{
-		listNode* temp = tail;
-		tail = tail->previous;
+		Node* temp = tail;
+		tail = tail->point[0];
 		delete temp;
 	}
-	tail = nullptr;
 }
 
-bool List::IsEmpty()
+bool List::isEmpty()
 {
-	if (head == tail || tail == nullptr)
-		return true;
-
-	return false;
+	return (head == tail || tail == nullptr);
 }
 
-void List::insertEnd(listNode* data)
+void List::insert(Node* data)
 {
 	if (data != nullptr)
 	{
-		tail->next = data;
-		tail = tail->next;
+		tail->point[1] = data;
+		tail = tail->point[1];
 	}
 	else
 		cout << "listNode is null";

@@ -1,56 +1,82 @@
 
 #include "binaryTree.h"
 
-binaryTree::binaryTree()
-{
-    root = nullptr;
-}
-
 binaryTree::~binaryTree()
 {
-    MakeEmpty();
+    makeEmpty();
 }
 
-void binaryTree::MakeEmpty(node * leaf)
+void binaryTree::makeEmptyFN(Node* leaf)
 {
+    cout << leaf << endl;
     if (leaf == nullptr)
         return;
     else
     {
-        MakeEmpty(leaf->left);
-        MakeEmpty(leaf->right);
+        makeEmptyFN(leaf->point[0]);
+        makeEmptyFN(leaf->point[1]);
         delete leaf;
         return;
     }
 }
 
-void binaryTree::MakeEmpty()
+void binaryTree::printDS()
 {
-    MakeEmpty(root);
+    if(head == nullptr)
+        return;
+    else
+    {
+        printTree(head);
+    }
+    
 }
 
-void binaryTree::insert(node * insertLeaf, node* leaf)
+void binaryTree::printTree(Node* node)
+{
+    if(node->point[0])
+        printTree(node->point[0]);
+    if(node->point[1])
+        printTree(node->point[1]);
+    node->printNode();
+}
+
+void binaryTree::makeEmpty()
+{
+    makeEmptyFN(head);
+}
+
+bool binaryTree::isEmpty()
+{
+    return head == nullptr;
+}
+
+void binaryTree::insert(Node* data)
+{
+    insert(data, head);
+}
+
+void binaryTree::insert(Node * insertLeaf, Node* leaf)
 {
     if (insertLeaf->key_value < leaf->key_value)
     {
-        if (leaf->left != nullptr)
-            insert(insertLeaf, leaf->left);
+        if (leaf->point[0] != nullptr)
+            insert(insertLeaf, leaf->point[0]);
         else
         {
-            leaf->left = insertLeaf;
-            insertLeaf->left = nullptr;    //Sets the left child of the child node to null
-            insertLeaf->right = nullptr;   //Sets the right child of the child node to null
+            leaf->point[0] = insertLeaf;
+            insertLeaf->point[0] = nullptr;    //Sets the left child of the child node to null
+            insertLeaf->point[1] = nullptr;   //Sets the right child of the child node to null
         }
     }
     else if (insertLeaf->key_value >= leaf->key_value)
     {
-        if (leaf->right != nullptr)
-            insert(insertLeaf, leaf->right);
+        if (leaf->point[1] != nullptr)
+            insert(insertLeaf, leaf->point[1]);
         else
         {
-            leaf->left = insertLeaf;
-            insertLeaf->left = nullptr;    //Sets the left child of the child node to null
-            insertLeaf->right = nullptr;   //Sets the right child of the child node to null
+            leaf->point[0] = insertLeaf;
+            insertLeaf->point[0] = nullptr;    //Sets the left child of the child node to null
+            insertLeaf->point[1] = nullptr;   //Sets the right child of the child node to null
         }
     }
 }
@@ -84,23 +110,22 @@ void binaryTree::insert(node * insertLeaf, node* leaf)
 //        }
 //    }
 
-
-node * binaryTree::search(int key, node *leaf)
+Node * binaryTree::search(int key, Node *leaf)
 {
     if (leaf != nullptr)
     {
         if (key == leaf->key_value)
             return leaf;
         if (key < leaf->key_value)
-            return search(key, leaf->left);
+            return search(key, leaf->point[0]);
         else
-            return search(key, leaf->right);
+            return search(key, leaf->point[1]);
     }
     else return nullptr;
 }
 
-node* binaryTree::search(int key)
+Node* binaryTree::search(int key)
 {
-    return search(key, root);
+    return search(key, head);
 }
 

@@ -1,19 +1,23 @@
+#ifndef __LIST_H
+#define __LIST_H
+
 #pragma once
 
-#include "listNode.h"
+#include "ds.h"
 
-class List
+class List : public DS
 {
 public:
 	List();
 	~List();
 
-	void insertEnd(listNode* lstnode);
-	bool IsEmpty();
-	void MakeEmpty();
+	virtual void insert(Node* data);
+	virtual void printDS();
+	virtual bool isEmpty();
+	virtual void makeEmpty();
 
 private:
-	void MakeEmpty(listNode* lstnode);
-	listNode * head;
-	listNode * tail;
+	void makeEmpty(Node* lstnode);
+	Node *tail;
 };
+#endif // __LIST_H
