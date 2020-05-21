@@ -1,2 +1,24 @@
-﻿  main.cpp
-  Mivne2.vcxproj -> D:\GitHub\Mivene2\Minvne2\Mivne2\Debug\Mivne2.exe
+﻿  binaryTree.cpp
+  List.cpp
+  main.cpp
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(19): error C2259: 'List': cannot instantiate abstract class
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\List.h(8): message : see declaration of 'List'
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(19): message : due to following members:
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(19): message : 'void DS::insert(Node *)': is abstract
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\ds.h(18): message : see declaration of 'DS::insert'
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(19,26): error C2259: 'List': cannot instantiate abstract class
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\List.h(8): message : see declaration of 'List'
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(19,26): message : due to following members:
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(19,26): message : 'void DS::insert(Node *)': is abstract
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\ds.h(18): message : see declaration of 'DS::insert'
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(22): error C2259: 'binaryTree': cannot instantiate abstract class
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\binaryTree.h(7): message : see declaration of 'binaryTree'
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(22): message : due to following members:
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(22): message : 'void DS::insert(Node *)': is abstract
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\ds.h(18): message : see declaration of 'DS::insert'
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(22,39): error C2259: 'binaryTree': cannot instantiate abstract class
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\binaryTree.h(7): message : see declaration of 'binaryTree'
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(22,39): message : due to following members:
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\main.cpp(22,39): message : 'void DS::insert(Node *)': is abstract
+D:\GitHub\Mivene2\Minvne2\Mivne2\Mivne2\ds.h(18): message : see declaration of 'DS::insert'
+  Generating Code...

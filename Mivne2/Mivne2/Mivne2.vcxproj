@@ -140,14 +140,12 @@
   <ItemGroup>
     <ClCompile Include="binaryTree.cpp" />
     <ClCompile Include="List.cpp" />
-    <ClCompile Include="listNode.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="node.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="binaryTree.h" />
     <ClInclude Include="List.h" />
-    <ClInclude Include="listNode.h" />
     <ClInclude Include="node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -5,7 +5,9 @@ using namespace std;
 
 List::List() 
 {
-	tail = nullptr;
+	tail = new Node();
+	head = tail->point[1] = new Node();
+	tail->point[0] = new Node();
 }
 
 List::~List()
@@ -43,14 +45,8 @@ bool List::isEmpty()
 	return (head == tail || tail == nullptr);
 }
 
-void List::insert(Node* data)
-{
-	if (data != nullptr)
-	{
-		tail->point[1] = data;
+void List::insert (int k, char * firstName, char * lastName) {
+		tail->point[1] ->setNode(k, firstName, lastName);
 		tail = tail->point[1];
-	}
-	else
-		cout << "listNode is null";
-	
+		tail->point[1] = new Node();
 }

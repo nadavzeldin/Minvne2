@@ -6,6 +6,7 @@
 using namespace std;
 #define MAX 100
 
+#define _CRT_SECURE_NO_WARNINGS
 int main()
 {
     //configs
@@ -15,10 +16,10 @@ int main()
     bool valid_name = false;
 
     //creating list
-    List lst;
+    List * lst = new List();
 
     //creating binary tree
-    binaryTree tree;
+    binaryTree * tree = new binaryTree();
     
     cout << "Please enter number of items: ";
     cin >> n;
@@ -28,7 +29,7 @@ int main()
     
     for (int i = 0; i < n; i++)
     {
-        cout << "Please enter the id of person number " << i + 1 << endl;
+        cout << "Please enter the id of person number #" << i + 1 << endl;
         cin >> k;
 	    while(!valid_name)
 	    {
@@ -42,6 +43,8 @@ int main()
 	    }
         //inserting value to array
         arr[i].setNode(k, firstName, lastName);
+        lst->insert(k, firstName, lastName);
+        tree->insert(k, firstName,lastName, tree->head);
 	    valid_name = false;
     }
     cout << "Enter ID number to check" << endl;

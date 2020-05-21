@@ -1,5 +1,6 @@
 #include "node.h"
-
+#define _CRT_SECURE_NO_WARNINGS
+ #pragma warning(disable : 4996)
 Node::Node(int key, char* firstName, char* lastName)
 {
 	key_value = key;
