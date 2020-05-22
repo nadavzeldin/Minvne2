@@ -65,15 +65,19 @@ void binaryTree::insert(int k, char* firstName, char* lastName)
 
 void binaryTree::insert(int k, char* firstName, char* lastName, Node * leaf)
 {
-    if (k < leaf->key_value)
+    if (leaf->fstName == NULL)
+    {
+        leaf->setNode(k, firstName, lastName);
+        return;
+    }
+    else if (k < leaf->key_value)
     {
         if (leaf->point[0] != nullptr)
             insert(k, firstName, lastName, leaf->point[0]);
         else
         {
+            leaf->point[0] = new Node();    //Sets the left child of the child node to null
             leaf->point[0]->setNode(k, firstName, lastName);
-            //leaf->point[0]->point[0] = new Node();    //Sets the left child of the child node to null
-           // leaf->point[0]->point[1] = new Node();   //Sets the right child of the child node to null
         }
     }
     else if (k >= leaf->key_value)
@@ -82,9 +86,8 @@ void binaryTree::insert(int k, char* firstName, char* lastName, Node * leaf)
             insert(k, firstName, lastName, leaf->point[1]);
         else
         {
-            leaf->point[1]->setNode(k, firstName, lastName);
-            leaf->point[0] = new Node();    //Sets the left child of the child node to null
             leaf->point[1] = new Node();   //Sets the right child of the child node to null
+            leaf->point[1]->setNode(k, firstName, lastName);
         }
     }
 }
