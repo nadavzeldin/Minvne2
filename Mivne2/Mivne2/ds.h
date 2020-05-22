@@ -15,7 +15,6 @@ public: // need to implement at list and tree classes
     virtual void makeEmpty() = 0;
     virtual bool isEmpty() = 0;
     virtual void printDS() = 0;
-    virtual void insert(Node* data) = 0;    
-
+    virtual void insert(int k, char* firstName, char* lastName) = 0;
 };
 #endif // __DS_H

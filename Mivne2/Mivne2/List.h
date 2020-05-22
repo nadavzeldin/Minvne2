@@ -14,7 +14,7 @@ public:
 	virtual void printDS();
 	virtual bool isEmpty();
 	virtual void makeEmpty();
-	virtual void insert (int k, char* firstName, char* lastName) ;
+	virtual void insert (int k, char* firstName, char* lastName);
 
 private:
 	void makeEmpty(Node* lstnode);
