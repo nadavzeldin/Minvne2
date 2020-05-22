@@ -25,6 +25,7 @@ void Node::printNode()
 		cout << "Key is:" << key_value << endl;
 		cout << "First Name is:" << fstName << endl;
 		cout << "Last Name is: " << lstName << endl;
+		cout << endl;
 	}
 	else
 	{

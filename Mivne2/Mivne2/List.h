@@ -15,7 +15,7 @@ public:
 	virtual bool isEmpty();
 	virtual void makeEmpty();
 	virtual void insert (int k, char* firstName, char* lastName);
-
+	void insertWithOrder(int k, char* firstName, char* lastName,int& compare);
 private:
 	void makeEmpty(Node* lstnode);
 	Node *tail;

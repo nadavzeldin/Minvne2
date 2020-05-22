@@ -5,8 +5,8 @@ using namespace std;
 
 List::List() 
 {
-	tail = new Node();
-	head = tail->point[1] = new Node();
+	head = tail = new Node();
+	tail->point[1] = new Node();
 	tail->point[0] = new Node();
 }
 
@@ -49,4 +49,52 @@ void List::insert (int k, char * firstName, char * lastName) {
 		tail->point[1] ->setNode(k, firstName, lastName);
 		tail = tail->point[1];
 		tail->point[1] = new Node();
+}
+
+void List::insertWithOrder(int k, char* firstName, char* lastName, int& compares) {
+	
+	Node* temp = head;
+
+	Node* newNodeToAdd = new Node();
+	newNodeToAdd->setNode(k, firstName, lastName);
+	//if head is null
+	if (temp->key_value == -9999)
+	{
+		temp->fstName = firstName;
+		temp->key_value = k;
+		temp->lstName = lastName;
+		temp->point[1] = new Node();
+		return;
+	}
+	//if head is less then new item
+	else if (head->key_value > k)
+	{
+		newNodeToAdd->point[1] = head;
+		head = newNodeToAdd;
+		compares++;
+		return;
+	}
+	else
+	{
+		//check to insert in middle
+		while (temp->point[1] != nullptr)
+		{
+			
+			if (temp->key_value < k && temp->point[1]->key_value > k)
+			{
+						
+				//swap
+				newNodeToAdd->point[1] = temp->point[1];
+				temp->point[1] = newNodeToAdd;
+				compares++;
+				return;
+			}
+			temp = temp->point[1];
+		}
+
+		//insert in tail
+		tail->point[1]=newNodeToAdd;
+		tail = newNodeToAdd;
+	}
+	
 }
