@@ -1,20 +1,12 @@
 
-#include "binaryTree.h"
-#include "node.h"
+#include "BSTree.h"
 
-binaryTree::binaryTree()
-{
-    head = new Node();
-    root = head;
-}
-
-
-binaryTree::~binaryTree()
+BSTree::~BSTree()
 {
     makeEmpty();
 }
 
-void binaryTree::makeEmptyFN(Node* leaf)
+void BSTree::makeEmptyFN(Node* leaf)
 {
     cout << leaf << endl;
     if (leaf == nullptr)
@@ -28,7 +20,7 @@ void binaryTree::makeEmptyFN(Node* leaf)
     }
 }
 
-void binaryTree::printDS()
+void BSTree::printDS()
 {
     if(head == nullptr)
         return;
@@ -39,7 +31,7 @@ void binaryTree::printDS()
     
 }
 
-void binaryTree::printTree(Node* node)
+void BSTree::printTree(Node* node)
 {
     if(node->point[0])
         printTree(node->point[0]);
@@ -48,26 +40,27 @@ void binaryTree::printTree(Node* node)
     node->printNode();
 }
 
-void binaryTree::makeEmpty()
+void BSTree::makeEmpty()
 {
     makeEmptyFN(head);
 }
 
-bool binaryTree::isEmpty()
+bool BSTree::isEmpty()
 {
     return head == nullptr;
 }
 
-void binaryTree::insert(int k, char* firstName, char* lastName)
+void BSTree::insert(int k, char* firstName, char* lastName)
 {
     insert(k,firstName,lastName, head);
 }
 
-void binaryTree::insert(int k, char* firstName, char* lastName, Node * leaf)
+void BSTree::insert(int k, char* firstName, char* lastName, Node * leaf)
 {
-    if (leaf->fstName == NULL)
+    if (!head)
     {
-        leaf->setNode(k, firstName, lastName);
+        cout << "here" << endl;
+        head = new Node(k, firstName, lastName);
         return;
     }
     else if (k < leaf->key_value)
@@ -92,7 +85,7 @@ void binaryTree::insert(int k, char* firstName, char* lastName, Node * leaf)
     }
 }
 //
-//void binaryTree::insert(Node * insertLeaf, Node* leaf)
+//void BSTree::insert(Node * insertLeaf, Node* leaf)
 //{
 //    if (insertLeaf->key_value < leaf->key_value)
 //    {
@@ -120,7 +113,7 @@ void binaryTree::insert(int k, char* firstName, char* lastName, Node * leaf)
 
 
 //
-//void binaryTree::insert(int key, node* leaf)
+//void BSTree::insert(int key, node* leaf)
 //{
 //    if (key < leaf->key_value)
 //    {
@@ -147,7 +140,7 @@ void binaryTree::insert(int k, char* firstName, char* lastName, Node * leaf)
 //        }
 //    }
 
-Node * binaryTree::search(int key, Node *leaf)
+Node * BSTree::search(int key, Node *leaf)
 {
     if (leaf != nullptr)
     {
@@ -161,7 +154,7 @@ Node * binaryTree::search(int key, Node *leaf)
     else return nullptr;
 }
 
-Node* binaryTree::search(int key)
+Node* BSTree::search(int key)
 {
     return search(key, head);
 }

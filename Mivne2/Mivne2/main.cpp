@@ -1,13 +1,14 @@
 #include <iostream>
 #include <ctype.h>
 #include <string.h>
-#include "binaryTree.h"
+#include "BSTree.h"
 #include "List.h"
 using namespace std;
 #define MAX 100
 
 int NaivePrint(Node arr[], int n, int k);
 void swap(Node* a, Node* b);
+int BSTPrint(Node [], int n, int k);
 int PrintBySort(Node arr[], int n, int k);
 int partition(Node array[], int low, int high);
 
@@ -15,7 +16,7 @@ int partition(Node array[], int low, int high);
 int main()
 {
     //configs
-    int n,k, v, j =0;
+    int n, k, v;
     char firstName[MAX];
     char lastName[MAX];
     bool valid_name = false;
@@ -24,7 +25,7 @@ int main()
     List * lst = new List();
 
     //creating binary tree
-    binaryTree * tree = new binaryTree();
+    BSTree *tree = new BSTree();
     
     cout << "Please enter number of items: ";
     cin >> n;
@@ -38,13 +39,13 @@ int main()
         cin >> k;
 	    while(!valid_name)
 	    {
-	    cout << "Please enter the first and last name of the person" << endl;
- 	    cin >> firstName;
-	    cin >> lastName;	   
-	    cout << "first after " << firstName << endl;
-	    cout << "last after " << lastName << endl;
-	    if(firstName && lastName) { valid_name = true; }
-	    else { valid_name = false; }
+            cout << "Please enter the first and last name of the person" << endl;
+            cin >> firstName;
+            cin >> lastName;	   
+            cout << "first after " << firstName << endl;
+            cout << "last after " << lastName << endl;
+            if(firstName && lastName) { valid_name = true; }
+            else { valid_name = false; }
 	    }
         //inserting value to array , list and tree
         arr[i].setNode(k, firstName, lastName);
@@ -52,22 +53,23 @@ int main()
         tree->insert(k, firstName,lastName, tree->head);
 	    valid_name = false;
     }
-    // NaivePrint
-    NaivePrint(arr, n, 6);
-
-    //PrintBySort
-    PrintBySort(arr, n, k);
-
-    cout << "Enter ID number to check" << endl;
-    cin >> v; // v is the comprasion value
     for (int i=0; i<n; i++)
     {
         arr[i].printNode();
     }
 
+    cout << "Enter ID number to check" << endl;
+    cin >> v; // v is the comprasion value
 
-    //need to print all items which id is less then k
-        //BSTPrint
+    // NaivePrint
+    NaivePrint(arr, n, v);
+
+    //PrintBySort
+    PrintBySort(arr, n, v);
+    
+    //BSTPrint
+    BSTPrint(arr, n, v);
+
     return 0;
 }
 
@@ -83,7 +85,16 @@ int NaivePrint(Node arr[], int n, int k){
     }
     ls->printDS();
     cout << "\ncompares: ";
-    cout<<compares;
+    cout << compares;
+
+    return compares;
+}
+
+
+int BSTPrint(Node [], int n, int k) 
+{
+    int compares = 0;
+
 
     return compares;
 }
@@ -123,7 +134,7 @@ int partition(Node array[], int low, int high) {
 
 // Function to swap position of elements
 void swap(Node* a, Node* b) {
-    Node t = *a;
-    *a = *b;
-    *b = t;
+    Node* t = a;
+    a = b;
+    b = t;
 }

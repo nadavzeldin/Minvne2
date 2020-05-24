@@ -1,19 +1,18 @@
-#ifndef __BINARYTREE_H
-#define __BINARYTREE_H
+#ifndef __BSTree_H
+#define __BSTree_H
 
 #pragma once
 #include "ds.h"
 
-class binaryTree : public DS
+class BSTree : public DS
 {
 public:
-	binaryTree();
-	~binaryTree();
+	~BSTree();
 	virtual void printDS();
 	virtual bool isEmpty();
 	virtual void makeEmpty();
 	virtual void insert(int k, char* firstName, char* lastName);
-	virtual void insert(int k, char* firstName, char* lastName, Node * leaf);
+	virtual void insert(int k, char* firstName, char* lastName, Node *leaf);
 	
 
 	//virtual void insert(Node* data);
@@ -22,13 +21,12 @@ public:
 private:
 	Node* search(int key, Node* leaf);
 	void makeEmptyFN(Node* leaf);
-	Node* root;
 	void printTree(Node* node);
 	Node* search(int key);
 
 };
 
-#endif // __BINARYTREE_H
+#endif // __BSTree_H
 //
 //virtual void printDS();
 //virtual bool isEmpty();
