@@ -60,10 +60,8 @@ void List::insertWithOrder(int k, char* firstName, char* lastName, int& compares
 	//if head is null
 	if (temp->key_value == -9999)
 	{
-		temp->fstName = firstName;
-		temp->key_value = k;
-		temp->lstName = lastName;
-		temp->point[1] = new Node();
+		temp->setNode(k, firstName, lastName);
+		temp->point[1] = nullptr;
 		return;
 	}
 	//if head is less then new item

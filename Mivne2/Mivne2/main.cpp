@@ -82,7 +82,7 @@ int NaivePrint(Node arr[], int n, int k){
     {
         if (arr[i].key_value < k)
         {
-            ls->insertWithOrder(arr[i].key_value, arr[i].fstName, arr[i].lstName,compares);
+            ls->insertWithOrder(arr[i].key_value, arr[i].fstName, arr[i].lstName, compares);
         }
     }
     ls->printDS();
