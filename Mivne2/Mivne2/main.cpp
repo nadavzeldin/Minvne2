@@ -10,7 +10,7 @@ int NaivePrint(Node arr[], int n, int k);
 void swap(Node* a, Node* b);
 int BSTPrint(Node [], int n, int k);
 int PrintBySort(Node arr[], int n, int k);
-int partition(Node array[], int low, int high);
+int partition(Node array[], int low, int high, int &comp);
 
 #define _CRT_SECURE_NO_WARNINGS
 int main()
@@ -108,7 +108,7 @@ int PrintBySort(Node arr[], int n, int k)
     int compares = 0;
     if (n < k) {
         // Select pivot position and put all the elements smaller than pivot on left and greater than pivot on right
-        int pi = partition(arr, n, k);
+        int pi = partition(arr, n, k, compares);
 
         // Sort the elements on the left of pivot
         PrintBySort(arr, n, pi - 1);
@@ -120,7 +120,7 @@ int PrintBySort(Node arr[], int n, int k)
 }
 
 //Function to partition the array on the basis of pivot element
-int partition(Node array[], int low, int high)
+int partition(Node array[], int low, int high, int &comp)
 {
     // Select the pivot element
     Node pivot = array[high];
@@ -132,6 +132,7 @@ int partition(Node array[], int low, int high)
             i++;
             swap(&array[i], &array[j]);
         }
+        comp++;
     }
     swap(&array[i + 1], &array[high]);
     return (i + 1);
@@ -140,7 +141,6 @@ int partition(Node array[], int low, int high)
 // Function to swap position of elements
 void swap(Node* a, Node* b) 
 {
-    cout << a << endl;
     Node* t = a;
     a = b;
     b = t;
