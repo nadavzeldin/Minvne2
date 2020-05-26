@@ -13,6 +13,7 @@ public:
 	virtual void makeEmpty();
 	virtual void insert(int k, char* firstName, char* lastName);
 	virtual void insert(int k, char* firstName, char* lastName, Node *leaf);
+	void printDS_key(int key);
 	
 
 	//virtual void insert(Node* data);
@@ -21,7 +22,7 @@ public:
 private:
 	Node* search(int key, Node* leaf);
 	void makeEmptyFN(Node* leaf);
-	void printTree(Node* node);
+	void printTree(Node* node, int key=99999999);
 	Node* search(int key);
 
 };

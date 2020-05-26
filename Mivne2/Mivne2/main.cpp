@@ -16,7 +16,7 @@ int partition(Node array[], int low, int high);
 int main()
 {
     //configs
-    int n, k, v;
+    int n, k, v, comp;
     char firstName[MAX];
     char lastName[MAX];
     bool valid_name = false;
@@ -42,8 +42,6 @@ int main()
             cout << "Please enter the first and last name of the person" << endl;
             cin >> firstName;
             cin >> lastName;	   
-            cout << "first after " << firstName << endl;
-            cout << "last after " << lastName << endl;
             if(firstName && lastName) { valid_name = true; }
             else { valid_name = false; }
 	    }
@@ -62,15 +60,19 @@ int main()
     cin >> v; // v is the comprasion value
 
     // NaivePrint
-    NaivePrint(arr, n, v);
-
-    //PrintBySort
-    PrintBySort(arr, n, v);
+    comp = NaivePrint(arr, n, v);
+    cout << "Naive Print: " << comp << " comprasions" << endl;
     
     //BSTPrint
-    BSTPrint(arr, n, v);
-
+    comp = BSTPrint(arr, n, v);
+    cout << "BSTprint: " << comp << " comprasions" << endl;
     return 0;
+/*
+    //PrintBySort
+    comp = PrintBySort(arr, n, v);
+    cout << "PrintBySort: " << comp << " comprasions" << endl;
+
+*/
 }
 
 int NaivePrint(Node arr[], int n, int k){
@@ -84,18 +86,20 @@ int NaivePrint(Node arr[], int n, int k){
         }
     }
     ls->printDS();
-    cout << "\ncompares: ";
-    cout << compares;
 
     return compares;
 }
 
 
-int BSTPrint(Node [], int n, int k) 
+int BSTPrint(Node array[], int n, int k) 
 {
     int compares = 0;
-
-
+    BSTree *tree  = new BSTree();
+    for(int i=0; i < n; i++)
+    {
+        tree->insert(array[i].key_value, array[i].fstName, array[i].lstName);
+    }
+    tree->printDS_key(k);
     return compares;
 }
 
@@ -116,7 +120,8 @@ int PrintBySort(Node arr[], int n, int k)
 }
 
 //Function to partition the array on the basis of pivot element
-int partition(Node array[], int low, int high) {
+int partition(Node array[], int low, int high)
+{
     // Select the pivot element
     Node pivot = array[high];
     int i = (low - 1);
@@ -133,7 +138,9 @@ int partition(Node array[], int low, int high) {
 }
 
 // Function to swap position of elements
-void swap(Node* a, Node* b) {
+void swap(Node* a, Node* b) 
+{
+    cout << a << endl;
     Node* t = a;
     a = b;
     b = t;

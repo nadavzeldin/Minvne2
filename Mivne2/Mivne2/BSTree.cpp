@@ -19,25 +19,31 @@ void BSTree::makeEmptyFN(Node* leaf)
         return;
     }
 }
+void BSTree::printDS_key(int key)
+{
+    if(!head)
+        return;
+    else
+        printTree(head, key);
+}
 
 void BSTree::printDS()
 {
-    if(head == nullptr)
+    if(!head)
         return;
     else
-    {
         printTree(head);
-    }
-    
 }
 
-void BSTree::printTree(Node* node)
+void BSTree::printTree(Node* node, int key)
 {
     if(node->point[0])
-        printTree(node->point[0]);
+        printTree(node->point[0], key);
+    if(node->key_value < key)
+        node->printNode();
     if(node->point[1])
-        printTree(node->point[1]);
-    node->printNode();
+        printTree(node->point[1], key);
+    return;
 }
 
 void BSTree::makeEmpty()
@@ -59,7 +65,6 @@ void BSTree::insert(int k, char* firstName, char* lastName, Node * leaf)
 {
     if (!head)
     {
-        cout << "here" << endl;
         head = new Node(k, firstName, lastName);
         return;
     }
