@@ -10,7 +10,7 @@ int NaivePrint(Node arr[], int n, int k);
 void swap(Node* a, Node* b);
 int BSTPrint(Node [], int n, int k);
 int PrintBySort(Node arr[], int n, int k);
-int partition(Node array[], int low, int high, int &comp);
+int partition(Node array[], int left, int right);
 
 #define _CRT_SECURE_NO_WARNINGS
 int main()
@@ -66,13 +66,13 @@ int main()
     //BSTPrint
     comp = BSTPrint(arr, n, v);
     cout << "BSTprint: " << comp << " comprasions" << endl;
-    return 0;
-/*
+
     //PrintBySort
-    comp = PrintBySort(arr, n, v);
+
+    comp = PrintBySort(arr, 0, v);
     cout << "PrintBySort: " << comp << " comprasions" << endl;
 
-*/
+
 }
 
 int NaivePrint(Node arr[], int n, int k){
@@ -103,45 +103,92 @@ int BSTPrint(Node array[], int n, int k)
     return compares;
 }
 
-int PrintBySort(Node arr[], int n, int k)
+
+int PrintBySort(Node arr[], int left, int right)
 {
-    int compares = 0;
-    if (n < k) {
-        // Select pivot position and put all the elements smaller than pivot on left and greater than pivot on right
-        int pi = partition(arr, n, k, compares);
+    int pivot;
 
-        // Sort the elements on the left of pivot
-        PrintBySort(arr, n, pi - 1);
-
-        // Sort the elements on the right of pivot
-        PrintBySort(arr, pi + 1, k);
+    if (left < right)
+    {
+        pivot = partition(arr, left,right);
+        PrintBySort(arr, left, pivot - 1);
+        PrintBySort(arr, pivot + 1, right);
     }
-    return compares;
+    return 1;
 }
 
-//Function to partition the array on the basis of pivot element
-int partition(Node array[], int low, int high, int &comp)
+int partition(Node A[], int left, int right)
 {
-    // Select the pivot element
-    Node pivot = array[high];
-    int i = (low - 1);
+    bool pivotIsLeft = true;
 
-    // Put the elements smaller than pivot on the left and greater than pivot on the right of pivot
-    for (int j = low; j < high; j++) {
-        if (array[j].key_value <= pivot.key_value) {
-            i++;
-            swap(&array[i], &array[j]);
+    Node* p1 = A + left;
+    Node* p2 = A + right;
+
+    Node* tmpP;
+    int index = 0;
+
+    while (p1 != p2) // do while they are not the same one
+    {
+        //cout << "pivot is " << *p1 << ", second is " << *p2 << "\n";
+
+        if (pivotIsLeft) // pivot(p1) is left
+        {
+            //cout << "pivot Is Left ";
+            if (*p1 > * p2) {
+                //cout << ", switch: ";
+                swap(p1, p2);
+
+                tmpP = p1;
+                p1 = p2;
+                p2 = tmpP;
+
+                if (pivotIsLeft)
+                    pivotIsLeft = false;
+                else
+                    pivotIsLeft = true;
+            }
+
+            if (pivotIsLeft)
+                p2 -= 1;
+            else
+                p2 += 1;
+
+            //printArr(A, 10);
         }
-        comp++;
+        else // pivot(p1) is right
+        {
+            //cout << "pivot Is Right ";
+            if (p1->key_value < p2->key_value) {
+                //cout << ", switch: ";
+                swap(p1, p2);
+
+                tmpP = p1;
+                p1 = p2;
+                p2 = tmpP;
+
+                if (pivotIsLeft)
+                    pivotIsLeft = false;
+                else
+                    pivotIsLeft = true;
+            }
+
+            if (pivotIsLeft)
+                p2 -= 1;
+            else
+                p2 += 1;
+
+            //printArr(A, 10);
+        }
+
+
     }
-    swap(&array[i + 1], &array[high]);
-    return (i + 1);
+    return p1 - A;
 }
 
 // Function to swap position of elements
 void swap(Node* a, Node* b) 
 {
-    Node* t = a;
-    a = b;
-    b = t;
+    Node t = *a;
+    *a = *b;
+    *b = t;
 }

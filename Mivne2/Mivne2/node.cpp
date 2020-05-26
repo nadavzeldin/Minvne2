@@ -1,6 +1,10 @@
 #include "node.h"
 #define _CRT_SECURE_NO_WARNINGS
  #pragma warning(disable : 4996)
+using namespace std;
+
+int Node::count = 0;
+
 Node::Node(int key, char* firstName, char* lastName)
 {
 	key_value = key;
@@ -62,4 +66,57 @@ Node::~Node()
 {
 	delete[] fstName;
 	delete[] lstName;
+}
+
+
+bool Node::operator<(const int& k) const
+{
+	count++;
+	return this->key_value < k;
+}
+
+bool Node::operator>(const int& k) const
+{
+	count++;
+	return this->key_value > k;
+}
+
+bool Node::operator<(const Node& s) const
+{
+	count++;
+	return this->key_value < s.key_value;
+}
+
+bool Node::operator>(const Node& s) const
+{
+	count++;
+	return this->key_value > s.key_value;
+}
+
+bool Node::operator>=(const Node& s) const
+{
+	count++;
+	return this->key_value >= s.key_value;
+}
+
+bool Node::operator==(const Node& s) const
+{
+	count++;
+	return this->key_value == s.key_value;
+}
+
+void Node::initcount()
+{
+	Node::count = 0;
+}
+
+int Node::getcount()
+{
+	return count;
+}
+
+ostream& operator<<(ostream& os, const Node& s)
+{
+	os << s.key_value << " (" << s.fstName << ") ";
+	return os;
 }

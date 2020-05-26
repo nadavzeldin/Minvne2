@@ -22,5 +22,18 @@ public:
 	char* fstName;
 	char* lstName;
 
+
+	bool operator<(const int& k) const;
+	bool operator>(const int& k) const;
+	bool operator<(const Node& s) const;
+	bool operator>(const Node& s) const;
+	bool operator>=(const Node& s) const;
+	bool operator==(const Node& s) const;
+
+	static int count;
+
+	friend ostream& operator<<(ostream& os, const Node& s);
+	static void initcount();
+	static int getcount();
 };
 #endif // __NODE_H
