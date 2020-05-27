@@ -5,14 +5,18 @@ using namespace std;
 
 List::List() 
 {
-	head = tail = new Node();
-	tail->point[1] = new Node();
-	tail->point[0] = new Node();
+	head = tail = nullptr; 
 }
 
 List::~List()
 {
 	makeEmpty();
+}
+
+
+int List::getCount() const
+{
+	return DS::getCount();
 }
 
 void List::printDS()
@@ -45,54 +49,61 @@ bool List::isEmpty()
 	return (head == tail || tail == nullptr);
 }
 
-void List::insert (int k, char * firstName, char * lastName) {
-		tail->point[1] ->setNode(k, firstName, lastName);
+void List::insert (int k, string firstName, string lastName) 
+{
+	Node *nw = new Node(k, firstName, lastName);
+	if(!head)
+	{
+		head = nw;
+		tail = nw;
+
+	}
+	else
+	{
+		tail->point[1] = nw;
 		tail = tail->point[1];
-		tail->point[1] = new Node();
+	}
 }
 
-void List::insertWithOrder(int k, char* firstName, char* lastName, int& compares) {
-	
-	Node* temp = head;
-
-	Node* newNodeToAdd = new Node();
-	newNodeToAdd->setNode(k, firstName, lastName);
+void List::insertWithOrder(int k, string firstName, string lastName)
+{
+	Node* new_node = new Node(k, firstName, lastName);
 	//if head is null
-	if (temp->key_value == -9999)
+	if (!head)
 	{
-		temp->setNode(k, firstName, lastName);
-		temp->point[1] = nullptr;
+		head = tail = new_node;
 		return;
 	}
 	//if head is less then new item
 	else if (head->key_value > k)
 	{
-		newNodeToAdd->point[1] = head;
-		head = newNodeToAdd;
-		compares++;
+		new_node->point[1] = head;
+		head = new_node;
+		count++;
 		return;
 	}
 	else
 	{
+		count++;
+		Node* temp = head;
 		//check to insert in middle
-		while (temp->point[1] != nullptr)
+		while (temp->point[1])
 		{
 			
 			if (temp->key_value < k && temp->point[1]->key_value > k)
 			{
-						
 				//swap
-				newNodeToAdd->point[1] = temp->point[1];
-				temp->point[1] = newNodeToAdd;
-				compares++;
+				new_node->point[1] = temp->point[1];
+				temp->point[1] = new_node;
+				count++;
 				return;
 			}
 			temp = temp->point[1];
 		}
 
 		//insert in tail
-		tail->point[1]=newNodeToAdd;
-		tail = newNodeToAdd;
+		tail->point[1] = new_node;
+		tail = new_node;
 	}
 	
 }

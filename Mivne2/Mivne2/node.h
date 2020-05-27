@@ -9,19 +9,18 @@ using namespace std;
 class Node 
 {
 public:
-	Node(int key, char* firstName, char* lastName);
-	Node();
+	Node(int key, string firstName, string lastName);
+	Node(const Node& node);
+	Node() = default;
 	void printNode();
-	void setNode(const int k_val, const char* f_name, const char* l_name);
-	void setFirstName(const char* fName);
-	void setLastName(const char* lName);
+	void setNode(const int k_val, const string f_name, const string l_name);
+	void setFirstName(const string fName);
+	void setLastName(const string lName);
 	void setValue(const int k_val);
-	~Node();
 	Node* point[2];
 	int key_value;
-	char* fstName;
-	char* lstName;
-
+	string fstName;
+	string lstName;
 
 	bool operator<(const int& k) const;
 	bool operator>(const int& k) const;

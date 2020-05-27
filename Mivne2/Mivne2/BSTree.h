@@ -7,12 +7,14 @@
 class BSTree : public DS
 {
 public:
+	BSTree();
 	~BSTree();
 	virtual void printDS();
 	virtual bool isEmpty();
 	virtual void makeEmpty();
-	virtual void insert(int k, char* firstName, char* lastName);
-	virtual void insert(int k, char* firstName, char* lastName, Node *leaf);
+	int getCount() const;
+	virtual void insert(int k, string firstName, string lastName);
+	virtual void insert(int k, string firstName, string lastName, Node *leaf);
 	void printDS_key(int key);
 	
 
@@ -32,4 +34,4 @@ private:
 //virtual void printDS();
 //virtual bool isEmpty();
 //virtual void makeEmpty();
-//virtual void insert(int k, char* firstName, char* lastName);
+//virtual void insert(int k, string firstName, string lastName);

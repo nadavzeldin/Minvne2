@@ -14,8 +14,9 @@ public:
 	virtual void printDS();
 	virtual bool isEmpty();
 	virtual void makeEmpty();
-	virtual void insert (int k, char* firstName, char* lastName);
-	void insertWithOrder(int k, char* firstName, char* lastName,int& compare);
+	int getCount() const;
+	virtual void insert (int k, string firstName, string lastName);
+	void insertWithOrder(int k, string firstName, string lastName);
 private:
 	void makeEmpty(Node* lstnode);
 	Node *tail;

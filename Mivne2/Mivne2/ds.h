@@ -11,10 +11,13 @@ class DS
 {
 public: // need to implement at list and tree classes
     Node* head = nullptr;
+    int count = 0;
+    int getCount() const;
     virtual ~DS() {}
     virtual void makeEmpty() = 0;
     virtual bool isEmpty() = 0;
     virtual void printDS() = 0;
-    virtual void insert(int k, char* firstName, char* lastName) = 0;
+    virtual void insert(int k, string firstName, string lastName) = 0;
+    
 };
 #endif // __DS_H
