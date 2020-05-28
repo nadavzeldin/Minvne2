@@ -11,6 +11,7 @@ class Node
 public:
 	Node(int key, string firstName, string lastName);
 	Node(const Node& node);
+	Node& operator=(const Node& node);
 	Node() = default;
 	void printNode();
 	void setNode(const int k_val, const string f_name, const string l_name);
@@ -22,17 +23,6 @@ public:
 	string fstName;
 	string lstName;
 
-	bool operator<(const int& k) const;
-	bool operator>(const int& k) const;
-	bool operator<(const Node& s) const;
-	bool operator>(const Node& s) const;
-	bool operator>=(const Node& s) const;
-	bool operator==(const Node& s) const;
-
-	static int count;
-
 	friend ostream& operator<<(ostream& os, const Node& s);
-	static void initcount();
-	static int getcount();
 };
 #endif // __NODE_H

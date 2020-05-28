@@ -5,18 +5,12 @@ using namespace std;
 
 List::List() 
 {
-	head = tail = nullptr; 
+	tail = nullptr; 
 }
 
 List::~List()
 {
 	makeEmpty();
-}
-
-
-int List::getCount() const
-{
-	return DS::getCount();
 }
 
 void List::printDS()
@@ -31,22 +25,22 @@ void List::printDS()
 
 void List::makeEmpty()
 {
-	makeEmpty(tail);
+	makeEmpty(head);
 }
 
 void List::makeEmpty(Node* tail)
 {
-	while (tail != nullptr)
+	while(head)
 	{
-		Node* temp = tail;
-		tail = tail->point[0];
-		delete temp;
+		Node* tmp = head;
+		head = head->point[1];
+		delete tmp;
 	}
 }
 
 bool List::isEmpty()
 {
-	return (head == tail || tail == nullptr);
+	return head == nullptr;
 }
 
 void List::insert (int k, string firstName, string lastName) 
@@ -79,12 +73,9 @@ void List::insertWithOrder(int k, string firstName, string lastName)
 	{
 		new_node->point[1] = head;
 		head = new_node;
-		count++;
-		return;
 	}
 	else
 	{
-		count++;
 		Node* temp = head;
 		//check to insert in middle
 		while (temp->point[1])
@@ -100,10 +91,9 @@ void List::insertWithOrder(int k, string firstName, string lastName)
 			}
 			temp = temp->point[1];
 		}
-
 		//insert in tail
 		tail->point[1] = new_node;
-		tail = new_node;
+		tail = tail->point[1];
 	}
-	
+	count++;
 }

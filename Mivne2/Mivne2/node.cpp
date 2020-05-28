@@ -3,15 +3,12 @@
 #pragma warning(disable : 4996)
 using namespace std;
 
-int Node::count;
-
 Node::Node(int key, string firstName, string lastName)
 {
 	key_value = key;
 	fstName = firstName;
 	lstName = lastName;
 	point[0] = nullptr, point[1] = nullptr;
-	count = 0;
 }
 
 Node::Node(const Node& node)
@@ -20,6 +17,12 @@ Node::Node(const Node& node)
 	fstName = node.fstName;
 	lstName = node.lstName;
 	point[0] = nullptr, point[1] = nullptr;
+}
+
+Node& Node::operator=(const Node& node)
+{
+	this->setNode(node.key_value, node.fstName, node.lstName);
+	return *this;
 }
 
 void Node::printNode()
@@ -57,53 +60,6 @@ void Node::setFirstName(const string fName)
 void Node::setLastName(const string lName)
 {
 	lstName = lName;
-}
-
-
-bool Node::operator<(const int& k) const
-{
-	count++;
-	return this->key_value < k;
-}
-
-bool Node::operator>(const int& k) const
-{
-	count++;
-	return this->key_value > k;
-}
-
-bool Node::operator<(const Node& s) const
-{
-	count++;
-	return this->key_value < s.key_value;
-}
-
-bool Node::operator>(const Node& s) const
-{
-	count++;
-	return this->key_value > s.key_value;
-}
-
-bool Node::operator>=(const Node& s) const
-{
-	count++;
-	return this->key_value >= s.key_value;
-}
-
-bool Node::operator==(const Node& s) const
-{
-	count++;
-	return this->key_value == s.key_value;
-}
-
-void Node::initcount()
-{
-	count = 0;
-}
-
-int Node::getcount()
-{
-	return count;
 }
 
 ostream& operator<<(ostream& os, const Node& s)

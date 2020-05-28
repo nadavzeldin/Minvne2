@@ -1,10 +1,4 @@
 #include "BSTree.h"
-
-BSTree::BSTree()
-{
-    head = nullptr;
-}
-
 BSTree::~BSTree()
 {
     makeEmpty();
@@ -24,10 +18,6 @@ void BSTree::makeEmptyFN(Node* leaf)
     }
 }
 
-int BSTree::getCount() const
-{
-    return DS::getCount();
-}
 void BSTree::printDS_key(int key)
 {
     if(!head)
@@ -72,13 +62,13 @@ void BSTree::insert(int k, string firstName, string lastName)
     insert(k,firstName,lastName, head);
 }
 
-void BSTree::insert(int k, string firstName, string lastName, Node * leaf)
+void BSTree::insert(int k, string firstName, string lastName, Node *leaf)
 {
-    if (!leaf)
+    if (!head)
     {
         head = new Node(k, firstName, lastName);
     }
-    else if (k < leaf->key_value)
+    else if(k < leaf->key_value)
     {
         count++;
         if(leaf->point[0])
@@ -91,7 +81,7 @@ void BSTree::insert(int k, string firstName, string lastName, Node * leaf)
     else
     {
         count++;
-        if (!leaf->point[1])
+        if(leaf->point[1])
         {
             return insert(k, firstName, lastName, leaf->point[1]);
         }
@@ -102,9 +92,9 @@ void BSTree::insert(int k, string firstName, string lastName, Node * leaf)
     }
 }
 
-Node *BSTree::search(int key, Node *leaf)
+Node* BSTree::search(int key, Node *leaf)
 {
-    if (leaf != nullptr)
+    if(!leaf)
     {
         if (key == leaf->key_value)
             return leaf;

@@ -9,11 +9,11 @@ and tree inheritance the interface from
 
 class DS 
 {
-public: // need to implement at list and tree classes
+public: 
     Node* head = nullptr;
     int count = 0;
     int getCount() const;
-    virtual ~DS() {}
+    virtual ~DS() = default;
     virtual void makeEmpty() = 0;
     virtual bool isEmpty() = 0;
     virtual void printDS() = 0;
