@@ -84,7 +84,6 @@ int NaivePrint(Node arr[], int n, int k)
         }
     }
     ls->printDS();
-
     return ls->getCount();
 }
 
