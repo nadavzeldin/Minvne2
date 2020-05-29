@@ -13,6 +13,8 @@ int BSTPrint(Node [], int n, int k);
 int PrintBySort(Node arr[], int n, int k);
 void printUntill(Node *arr, int k, int &comp);
 int partition(Node array[], int left, int right, int &comp);
+bool validID(Node *arr, int n, int id);
+bool validName(string first_name, string last_name);
 
 #define _CRT_SECURE_NO_WARNINGS
 int main()
@@ -37,11 +39,22 @@ int main()
     
     for (int i = 0; i < n; i++)
     {
-        cout << "Please enter the id of person number #" << i + 1 << endl;
-        cin >> k;
-        cout << "Please enter the first and last name of the person" << endl;
-        cin >> firstName;
-        cin >> lastName;	   
+        while(!valid_name)
+        {
+            cout << "Please enter the id of person number #" << i + 1 << endl;
+            cin >> k;
+            cout << "Please enter the first and last name of the person" << endl;
+            cin >> firstName;
+            cin >> lastName;	   
+            if(validID(arr, n, k) and validName(firstName, lastName))
+            {
+                valid_name = true;
+            }
+            else
+            {
+                cout << "Invalid input, try again" << endl;
+            }
+        }
         //inserting value to array , list and tree
         arr[i].setNode(k, firstName, lastName);
         lst->insert(k, firstName, lastName);
@@ -72,6 +85,20 @@ int main()
 
 }
 
+bool validID(Node *arr, int n, int id)
+{
+    for(int i=0; i < n; i++)
+    {
+        if(arr[n].key_value == id)
+            return false;   
+    }
+    return true;
+}
+
+bool validName(string first_name, string last_name)
+{
+    return (!(first_name.empty() or last_name.empty()));
+}
 int NaivePrint(Node arr[], int n, int k)
 {
     List * ls = new List();
