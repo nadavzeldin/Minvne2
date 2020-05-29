@@ -81,12 +81,12 @@ void List::insertWithOrder(int k, string firstName, string lastName)
 		while (temp->point[1])
 		{
 			
+			count++;
 			if (temp->key_value < k && temp->point[1]->key_value > k)
 			{
 				//swap
 				new_node->point[1] = temp->point[1];
 				temp->point[1] = new_node;
-				count++;
 				return;
 			}
 			temp = temp->point[1];

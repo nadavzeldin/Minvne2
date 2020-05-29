@@ -81,8 +81,6 @@ int main()
 
     comp = PrintBySort(arr, n, v);
     cout << "PrintBySort: " << comp << " comprasions" << endl;
-
-
 }
 
 bool validID(Node *arr, int n, int id)
@@ -104,9 +102,9 @@ int NaivePrint(Node arr[], int n, int k)
     List * ls = new List();
     for (int i = 0; i < n; i++)
     {
+        ls->count++;
         if (arr[i].key_value < k)
         {
-            ls->count++;
             ls->insertWithOrder(arr[i].key_value, arr[i].fstName, arr[i].lstName);
         }
     }
